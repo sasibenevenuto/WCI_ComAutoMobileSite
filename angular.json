@@ -31,12 +31,35 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/primeng/resources/themes/saga-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeflex/primeflex.css",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/fullcalendar/main.css"
             ],
-            "scripts": []
+            "scripts": [
+             
+            ]
           },
           "configurations": {
-            "production": {
+            "dev": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ]
+            },
+            "hmg": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.hmg.ts"
+                }
+              ]
+            },
+            "prod": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -71,8 +94,14 @@
             "browserTarget": "WCIComAutoMobileSite:build"
           },
           "configurations": {
-            "production": {
-              "browserTarget": "WCIComAutoMobileSite:build:production"
+            "dev": {
+              "browserTarget": "WCIComAutoMobileSite:build:dev"
+            },
+            "hmg": {
+              "browserTarget": "WCIComAutoMobileSite:build:hmg"
+            },
+            "prod": {
+              "browserTarget": "WCIComAutoMobileSite:build:prod"
             }
           }
         },
@@ -119,13 +148,22 @@
             "devServerTarget": "WCIComAutoMobileSite:serve"
           },
           "configurations": {
-            "production": {
-              "devServerTarget": "WCIComAutoMobileSite:serve:production"
+            "dev": {
+              "devServerTarget": "WCIComAutoMobileSite:build:dev"
+            },
+            "hmg": {
+              "devServerTarget": "WCIComAutoMobileSite:serve:hmg"
+            },
+            "prod": {
+              "devServerTarget": "WCIComAutoMobileSite:serve:prod"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "WCIComAutoMobileSite"
+  "defaultProject": "WCIComAutoMobileSite",
+  "cli": {
+    "analytics": false
+  }
 }

@@ -1,18 +1,64 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { Injector, LOCALE_ID, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CommonModule, registerLocaleData } from '@angular/common';
+import { Router } from '@angular/router';
+import localePt from '@angular/common/locales/pt';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthenticationInterceptorService } from './shared/services/authenticationInterceptor.service';
+import { HomePageComponent } from './pages/home/home-page/home-page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from './shared/material/material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MenubarModule } from 'primeng/menubar';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
+
+import { StateComponent } from './pages/general/state/state.component';
+import { StateService } from './services/general/state.services';
+
+
+
+registerLocaleData(localePt);
+
+export function authInterceptorFactory(router: Router, injector: Injector) {
+  return new AuthenticationInterceptorService(router, injector);
+}
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomePageComponent,
+    StateComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
-    AppRoutingModule
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    MaterialModule,
+    MenubarModule,
+    InputTextModule,
+    ButtonModule,
+    TableModule
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useFactory: authInterceptorFactory,
+      multi: true,
+      deps: [Router, Injector]
+    },
+    StateService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
