@@ -2,8 +2,8 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
-import hmacSHA512 from 'crypto-js/hmac-sha512';
-import Base64 from 'crypto-js/enc-base64';
+import * as hmacSHA512 from 'crypto-js/hmac-sha512';
+import * as base64 from 'crypto-js/enc-base64';
 
 @Injectable()
 export class UserService {
@@ -16,7 +16,7 @@ export class UserService {
 
     login(login: string, senha: string, tokenUsuario: string): Observable<any> {
 
-        const hashSenha = Base64.stringify(hmacSHA512(tokenUsuario, this.tokenIntranet));
+        const hashSenha = base64.stringify(hmacSHA512(tokenUsuario, this.tokenIntranet));
 
         var loginModel = {
             login: login,
@@ -29,7 +29,7 @@ export class UserService {
 
     loginChavePublica(): Observable<any> {
 
-        const hash = Base64.stringify(hmacSHA512("ChavePublica", "bb0a1fbe-6f25-4737-bdb7-375b222b8dea"));
+        const hash = base64.stringify(hmacSHA512("ChavePublica", "bb0a1fbe-6f25-4737-bdb7-375b222b8dea"));
 
         var siganture = {
             key: hash

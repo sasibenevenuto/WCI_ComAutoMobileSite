@@ -27,8 +27,6 @@ import { ResetSenhaModalComponent } from './pages/home/reset-senha-modal/reset-s
 
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 
-
-
 registerLocaleData(localePt);
 
 export function authInterceptorFactory(router: Router, injector: Injector) {
