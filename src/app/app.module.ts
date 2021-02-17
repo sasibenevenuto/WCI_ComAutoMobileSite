@@ -18,14 +18,17 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 
-import { StateComponent } from './pages/general/state/state.component';
-import { StateService } from './services/general/state.services';
+import { StateComponent } from './pages/common/state/state.component';
+import { StateService } from './services/common/state.services';
 import { LoginComponent } from './pages/home/login/login.component';
 import { ResetSenhaComponent } from './pages/home/reset-senha/reset-senha.component';
 import { NovoUsuarioComponent } from './pages/home/novo-usuario/novo-usuario.component';
 import { ResetSenhaModalComponent } from './pages/home/reset-senha-modal/reset-senha-modal.component';
 
 import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { CitiesComponent } from './pages/common/cities/cities.component';
+import { CityService } from './services/common/city.services';
+import { UserService } from './services/identity/user.services';
 
 registerLocaleData(localePt);
 
@@ -41,7 +44,8 @@ export function authInterceptorFactory(router: Router, injector: Injector) {
     LoginComponent,
     ResetSenhaComponent,
     NovoUsuarioComponent,
-    ResetSenhaModalComponent
+    ResetSenhaModalComponent,
+    CitiesComponent
   ],
   imports: [
     CommonModule,
@@ -66,7 +70,9 @@ export function authInterceptorFactory(router: Router, injector: Injector) {
       multi: true,
       deps: [Router, Injector]
     },
-    StateService
+    StateService,
+    CityService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

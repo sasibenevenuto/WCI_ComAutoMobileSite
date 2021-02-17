@@ -1,0 +1,22 @@
+<div class="card">
+    <h4>Cidades Brasileiros</h4>
+    <p-table [value]="cities" [lazy]="true" (onLazyLoad)="loadCarsLazy($event)" [paginator]="true" [rows]="10" [totalRecords]="count"
+        [rowsPerPageOptions]="[10]">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Código IBGE</th>
+                <th>UF</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-city>
+            <tr>
+                <td>{{city.cityId}}</td>
+                <td>{{city.name}}</td>
+                <td>{{city.externalCode}}</td>
+                <td>{{city.state?.uf}}</td>
+            </tr>
+        </ng-template>       
+    </p-table>
+</div>

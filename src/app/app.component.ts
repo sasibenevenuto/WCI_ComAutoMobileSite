@@ -47,7 +47,7 @@ export class AppComponent implements OnInit {
           {
             label: 'Cidades',
             icon: 'pi pi-fw pi-map-marker',
-            routerLink:'/state'                       
+            routerLink:'/City'                       
           },
           {
             label: 'Estados',

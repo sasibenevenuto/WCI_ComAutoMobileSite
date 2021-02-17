@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { StateModel } from 'src/app/model/general/stateModel';
-import { StateService } from 'src/app/services/general/state.services';
+import { StateModel } from 'src/app/model/common/stateModel';
+import { StateService } from 'src/app/services/common/state.services';
 
 @Component({
   selector: 'app-state',
